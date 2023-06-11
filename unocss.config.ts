@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig, presetUno } from 'unocss'
 import Color from 'color'
 
@@ -23,4 +24,13 @@ export default defineConfig({
       },
     },
   },
+  preflights: [
+    {
+      getCSS: ({ theme }) => `
+        * {
+            border-color: ${(theme.colors?.gray as any)?.[400]} !important; 
+          }
+      `,
+    },
+  ],
 })
