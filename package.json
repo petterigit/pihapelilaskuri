@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.53.1",
+    "nanoid": "^4.0.2",
     "solid-js": "^1.6.10"
   },
   "packageManager": "yarn@3.4.1"

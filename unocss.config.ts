@@ -6,8 +6,8 @@ export default defineConfig({
   theme: {
     colors: {
       primary: {
-        dark: Color('#40a02b').darken(0.3).hex(),
-        DEFAULT: Color('#40a02b').hex(),
+        dark: Color('#179299').darken(0.3).hex(),
+        DEFAULT: Color('#179299').hex(),
       },
       danger: {
         dark: Color('#d20f39').darken(0.3).hex(),
