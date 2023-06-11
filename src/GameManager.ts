@@ -1,27 +1,32 @@
 import { createStore, produce } from 'solid-js/store'
 import { Game, Player } from './types'
 import { nanoid } from 'nanoid'
+import { putGameToStorage } from './localstorage'
 
-const newGame = (): Game => ({
+export const newGame = (): Game => ({
   players: {},
+})
+
+export const newPlayer = (): Player => ({
+  id: nanoid(),
+  name: '',
+  score: 0,
+  misses: 0,
 })
 
 export const [game, setGame] = createStore<Game>(newGame())
 
 export const addPlayer = (name: string) => {
-  const newPlayer: Player = {
-    id: nanoid(),
-    name: name,
-    score: 0,
-    misses: 0,
-  }
+  const player = newPlayer()
+  player.name = name
 
   setGame(
     produce((current) => {
-      current.players[newPlayer.id] = newPlayer
+      current.players[player.id] = player
       return current
     })
   )
+  putGameToStorage(game)
 }
 
 export const removePlayer = (id: string) => {
@@ -31,4 +36,5 @@ export const removePlayer = (id: string) => {
       return current
     })
   )
+  putGameToStorage(game)
 }
