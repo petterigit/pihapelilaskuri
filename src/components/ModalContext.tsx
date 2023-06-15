@@ -5,7 +5,7 @@ import { Button } from './Button'
 export interface Modal {
   content: () => JSX.Element
   title?: string
-  onOk?: () => void
+  onOk?: () => boolean | void
   onCancel?: () => void
 }
 
@@ -77,7 +77,8 @@ export const ModalContainer: Component = () => {
                   text="Ok"
                   class="w-32"
                   onClick={() => {
-                    modal.onOk?.()
+                    const keepOpen = modal.onOk?.()
+                    if (keepOpen) return
                     closeModal(index())
                   }}
                 />

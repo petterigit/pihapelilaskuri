@@ -2,6 +2,7 @@ import { Component, createSignal, For, useContext } from 'solid-js'
 import { addPlayer, getPlayers } from '../GameManager'
 import { Button } from './Button'
 import { ModalContext } from './ModalContext'
+import { NewPlayer } from './NewPlayer'
 import { TextInput } from './TextInput'
 
 export const Players: Component = () => {
@@ -9,6 +10,8 @@ export const Players: Component = () => {
   const [name, setName] = createSignal<string>('')
 
   const createNewPlayer = () => {
+    if (!name()) return true
+
     addPlayer(name())
     setName('')
   }
@@ -29,7 +32,7 @@ export const Players: Component = () => {
   return (
     <div>
       <div>
-        <For each={getPlayers()}>{(player) => <div>{player.name}</div>}</For>
+        <For each={getPlayers()}>{(player) => <NewPlayer player={player} />}</For>
       </div>
       <div>
         <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
