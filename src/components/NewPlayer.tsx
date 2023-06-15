@@ -9,7 +9,7 @@ interface Props {
 
 export const NewPlayer: Component<Props> = (props) => {
   return (
-    <div class="border p-4 flex justify-between">
+    <div class="rounded border p-4 flex justify-between">
       <p class="font-bold text-xl">{props.player.name}</p>
       <Button danger text="Poista" onClick={() => removePlayer(props.player.id)} />
     </div>
