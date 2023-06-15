@@ -1,5 +1,5 @@
 import { Component, createSignal, For, useContext } from 'solid-js'
-import { addPlayer, getPlayers } from '../GameManager'
+import { addPlayer, getPlayers, randomizePlayerOrder } from '../GameManager'
 import { Button } from './Button'
 import { ModalContext } from './ModalContext'
 import { NewPlayer } from './NewPlayer'
@@ -22,7 +22,7 @@ export const Players: Component = () => {
       content: () => (
         <div>
           <label class="block">Pelaajan nimi:</label>
-          <TextInput autoFocus value={name()} onChange={(event) => setName(event.target.value)} />
+          <TextInput autoFocus value={name()} onInput={(event) => setName(event.target.value)} />
         </div>
       ),
       onOk: () => createNewPlayer(),
@@ -36,6 +36,7 @@ export const Players: Component = () => {
       </div>
       <div>
         <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
+        <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
       </div>
     </div>
   )

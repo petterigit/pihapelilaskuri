@@ -40,3 +40,25 @@ export const removePlayer = (id: string) => {
   )
   putGameToStorage(game)
 }
+
+export const randomizePlayerOrder = () => {
+  setGame(
+    produce((current) => {
+      const playerList = Object.values(current.players)
+
+      // Durstenfeld shuffle
+      for (let i = playerList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[playerList[i], playerList[j]] = [playerList[j], playerList[i]]
+      }
+
+      const orderedPlayers = playerList.reduce((players: Game['players'], player) => {
+        players[player.id] = player
+        return players
+      }, {})
+      current.players = orderedPlayers
+
+      return current.players
+    })
+  )
+}

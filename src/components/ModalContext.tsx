@@ -1,6 +1,6 @@
 import { Component, createContext, For, JSX, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
-import { Button } from './Button'
+import { Modal } from './Modal'
 
 export interface Modal {
   content: () => JSX.Element
@@ -43,6 +43,17 @@ export const ModalProvider: Component<ProviderProps> = (props) => {
 export const ModalContainer: Component = () => {
   const [modals, { removeModal }] = useContext(ModalContext)
 
+  const handleOk = (index: number) => {
+    const keepOpen = modals[index]?.onOk?.()
+    if (keepOpen) return
+    closeModal(index)
+  }
+
+  const handleCancel = (index: number) => {
+    modals[index]?.onCancel?.()
+    closeModal(index)
+  }
+
   const closeModal = (index: number) => {
     removeModal(index)
   }
@@ -51,40 +62,7 @@ export const ModalContainer: Component = () => {
     <div class="relative">
       <For each={modals}>
         {(modal, index) => (
-          <div
-            class="absolute inset-0 h-screen flex items-center justify-center bg-black/50"
-            onClick={() => {
-              modal.onCancel?.()
-              closeModal(index())
-            }}
-          >
-            <div class="p-8 max-w-3xl w-full bg-bg" onClick={(event) => event.stopPropagation()}>
-              <div class="min-h-48">
-                <h3 class="font-bold text-xl mb-8">{modal.title}</h3>
-                {modal.content()}
-              </div>
-              <div class="flex justify-center gap-16">
-                <Button
-                  danger
-                  text="Peruuta"
-                  class="w-32"
-                  onClick={() => {
-                    modal.onCancel?.()
-                    closeModal(index())
-                  }}
-                />
-                <Button
-                  text="Ok"
-                  class="w-32"
-                  onClick={() => {
-                    const keepOpen = modal.onOk?.()
-                    if (keepOpen) return
-                    closeModal(index())
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+          <Modal modal={modal} index={index()} onOk={handleOk} onCancel={handleCancel} />
         )}
       </For>
     </div>
