@@ -27,7 +27,7 @@ export const Modal: Component<Props> = (props) => {
 
   return (
     <div
-      class="absolute inset-0 h-screen flex items-center justify-center bg-black/50"
+      class="fixed inset-0 h-screen flex items-center justify-center bg-black/50"
       onClick={() => props.onCancel(props.index)}
     >
       <div class="p-8 max-w-3xl w-full bg-bg" onClick={(event) => event.stopPropagation()}>

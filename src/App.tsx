@@ -6,8 +6,10 @@ import { Main } from './views/Main'
 const App: Component = () => {
   return (
     <ModalProvider>
-      <ModalContainer />
-      <Main />
+      <div class="w-screen h-screen text-text bg-bg overflow-hidden">
+        <Main />
+        <ModalContainer />
+      </div>
     </ModalProvider>
   )
 }

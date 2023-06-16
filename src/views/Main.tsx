@@ -30,19 +30,16 @@ export const Main: Component = () => {
   }
 
   return (
-    <div class="min-h-screen w-screen bg-bg text-text overflow-hidden">
-      <div class="max-w-3xl px-2 mx-auto relative">
+    <div class="max-w-3xl mx-auto relative border">
+      <div class="absolute top-0 left-0 right-0 w-full h-16 border-b bg-bg flex justify-center items-center">
         <h2 class="font-bold text-2xl py-4 text-center">Pelaajat</h2>
-        <div class="h-full overflow-auto">
-          <Players />
-          <div class="h-32" />
-        </div>
       </div>
-      <div class="fixed max-w-3xl mx-auto left-0 right-0 bottom-0 h-16 border-t bg-bg">
-        <div class="h-full flex justify-around items-center">
-          <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
-          <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
-        </div>
+      <div class="h-screen w-full overflow-auto py-18">
+        <Players />
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 w-full h-16 border-t bg-bg flex justify-around items-center">
+        <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
+        <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
       </div>
     </div>
   )
