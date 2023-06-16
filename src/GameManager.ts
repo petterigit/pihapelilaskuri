@@ -1,9 +1,10 @@
 import { createStore, produce } from 'solid-js/store'
-import { Game, Player } from './types'
+import { Game, Player, State } from './types'
 import { nanoid } from 'nanoid'
 import { putGameToStorage } from './localstorage'
 
 export const newGame = (): Game => ({
+  state: 'players',
   players: {},
 })
 
@@ -17,6 +18,8 @@ export const newPlayer = (): Player => ({
 export const [game, setGame] = createStore<Game>(newGame())
 
 export const getPlayers = () => Object.values(game.players)
+export const isPlayersState = () => game.state === 'players'
+export const isGameState = () => game.state === 'game'
 
 export const addPlayer = (name: string) => {
   const player = newPlayer()
@@ -59,6 +62,15 @@ export const randomizePlayerOrder = () => {
       current.players = orderedPlayers
 
       return current.players
+    })
+  )
+}
+
+export const setGameState = (state: State) => {
+  setGame(
+    produce((current) => {
+      current.state = state
+      return current
     })
   )
 }
