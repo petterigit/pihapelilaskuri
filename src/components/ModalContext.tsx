@@ -61,18 +61,16 @@ export const ModalContainer: Component = () => {
   }
 
   return (
-    <div class="relative">
-      <For each={modals}>
-        {(modal, index) => (
-          <Modal
-            modal={modal}
-            index={index()}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            closeModal={() => closeModal(index())}
-          />
-        )}
-      </For>
-    </div>
+    <For each={modals}>
+      {(modal, index) => (
+        <Modal
+          modal={modal}
+          index={index()}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          closeModal={() => closeModal(index())}
+        />
+      )}
+    </For>
   )
 }

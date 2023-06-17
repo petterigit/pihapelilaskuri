@@ -13,8 +13,11 @@ const classes = `
 `
 
 const numberButtonClasses = `
-  w-16 h-12
+  max-w-16
+  h-12
   mx-1
+  flex-shrink
+  flex-grow
   flex
   justify-center
   items-center
