@@ -28,6 +28,7 @@ const barClasses = `
   items-center
   shadow
   z-10
+  bg-bg-surface
 `
 
 export const Main: Component = () => {

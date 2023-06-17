@@ -40,12 +40,12 @@ export const GamePlayer: Component<Props> = (props) => {
 
   return (
     <div class="flex justify-stretch px-4 py-4">
-      <div class="flex-grow">
+      <div class="flex-grow min-w-0">
         <div class="font-bold text-xl flex items-center">
-          <p>{props.player.name}</p>
           <Show when={props.hasHighestScore}>
-            <span class="inline-block text-3xl i-tabler-crown" />
+            <span class="inline-block text-3xl i-tabler-crown mr-2" />
           </Show>
+          <p class="break-words w-full">{props.player.name}</p>
         </div>
         <div>
           <p class="inline-block mr-2 min-w-24">

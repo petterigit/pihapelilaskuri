@@ -17,8 +17,8 @@ export default defineConfig({
       },
       bg: {
         DEFAULT: Color('#eff1f5').hex(),
-        surface: Color('#ccd0da').hex(),
-        overlay: Color('#7c7f93').hex(),
+        dark: Color('#ccd0da').hex(),
+        surface: Color('#dce0e8').hex(),
       },
       text: {
         DEFAULT: Color('#4c4f69').darken(0.3).hex(),

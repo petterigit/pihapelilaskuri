@@ -20,7 +20,7 @@ const numberButtonClasses = `
   items-center
   rounded
   bg-bg
-  hover:bg-bg-surface
+  hover:bg-bg-dark
   border-2
   !border-primary
   !hover:border-primary-dark

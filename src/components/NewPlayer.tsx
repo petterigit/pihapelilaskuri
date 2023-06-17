@@ -10,7 +10,7 @@ interface Props {
 export const NewPlayer: Component<Props> = (props) => {
   return (
     <div class="p-4 flex justify-between items-center">
-      <p class="font-bold text-xl">{props.player.name}</p>
+      <p class="font-bold text-xl break-words min-w-0">{props.player.name}</p>
       <TextButton danger text="Poista" onClick={() => removePlayer(props.player.id)} />
     </div>
   )
