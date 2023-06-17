@@ -5,8 +5,8 @@ const classes = (danger?: boolean) => `
   shadow
   hover:shadow-lg
   transition
-  py-2
-  px-4
+  py-3
+  px-6
   font-bold
   ${danger ? 'bg-danger hover:bg-danger-dark' : 'bg-primary hover:bg-primary-dark'}
   text-bg

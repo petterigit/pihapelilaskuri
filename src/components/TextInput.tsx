@@ -6,7 +6,7 @@ const classes = `
   rounded
   accent-primary
   caret-primary
-  h-8
+  h-12
   px-2
   border
 `

@@ -2,7 +2,7 @@ import { Component, JSX, splitProps } from 'solid-js'
 
 const classes = (danger?: boolean) => `
   transition
-  p-2
+  p-3
   font-bold
   ${danger ? 'text-danger hover:text-danger-dark' : 'text-primary hover:text-primary-dark'}
 `

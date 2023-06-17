@@ -6,15 +6,15 @@ const classes = `
   rounded
   accent-primary
   caret-primary
-  h-8
-  w-24
+  h-12
+  w-20
   px-2
   border
 `
 
 const numberButtonClasses = `
-  w-12 h-8
-  mx-2
+  w-16 h-12
+  mx-1
   flex
   justify-center
   items-center

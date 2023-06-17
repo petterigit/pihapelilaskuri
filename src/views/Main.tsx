@@ -69,7 +69,7 @@ export const Main: Component = () => {
           />
           <Button
             danger
-            text="Päätä peli"
+            text="Nollaa peli"
             onClick={() => {
               endGame()
               closeModal()
