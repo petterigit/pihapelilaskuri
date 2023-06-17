@@ -636,7 +636,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/types@npm:^2.0.0":
+"@iconify-json/tabler@npm:^1.1.79":
+  version: 1.1.79
+  resolution: "@iconify-json/tabler@npm:1.1.79"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: 7c54e944f4360db7508ab927e610302569e581ed2462fb998e19ff131404821e90faa45b387008005be80c53602b4d2a32a30d208e9dba11c36bf4534772898a
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^2.0.0":
   version: 2.0.0
   resolution: "@iconify/types@npm:2.0.0"
   checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
@@ -1113,7 +1122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/preset-icons@npm:0.53.1":
+"@unocss/preset-icons@npm:0.53.1, @unocss/preset-icons@npm:^0.53.1":
   version: 0.53.1
   resolution: "@unocss/preset-icons@npm:0.53.1"
   dependencies:
@@ -1268,10 +1277,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "Pihapelilaskuri@workspace:."
   dependencies:
+    "@iconify-json/tabler": ^1.1.79
     "@types/color": ^3.0.3
     "@types/node": ^20.3.0
     "@typescript-eslint/eslint-plugin": ^5.59.9
     "@typescript-eslint/parser": ^5.59.9
+    "@unocss/preset-icons": ^0.53.1
     "@unocss/reset": ^0.53.1
     color: ^4.2.3
     eslint: ^8.42.0

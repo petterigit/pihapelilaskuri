@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig, presetUno } from 'unocss'
+import presetIcons from '@unocss/preset-icons'
 import Color from 'color'
 
 export default defineConfig({
-  presets: [presetUno()],
+  presets: [presetUno(), presetIcons()],
   theme: {
     colors: {
       primary: {
@@ -28,7 +29,7 @@ export default defineConfig({
     {
       getCSS: ({ theme }) => `
         * {
-            border-color: ${(theme.colors?.gray as any)?.[400]} !important;
+            border-color: ${(theme as any).colors.gray[400]} !important;
         }
 
         input::-webkit-outer-spin-button,

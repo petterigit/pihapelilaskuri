@@ -1,9 +1,10 @@
-import { Component, useContext } from 'solid-js'
+import { Component, createSignal, useContext } from 'solid-js'
 import { Player } from '../types'
 import { TextButton } from './TextButton'
 import { ModalContext } from './ModalContext'
 import { NumberEditor } from './NumberEditor'
 import { setPlayerMisses, setPlayerScore } from '../GameManager'
+import { ChangeInformation } from './ChangeInformation'
 
 interface Props {
   player: Player
@@ -11,26 +12,28 @@ interface Props {
 
 export const GamePlayer: Component<Props> = (props) => {
   const [, { createModal }] = useContext(ModalContext)
+  const [score, setScore] = createSignal<number>(0)
+  const [misses, setMisses] = createSignal<number>(0)
 
   const handleEdit = () => {
+    setScore(props.player.score)
+    setMisses(props.player.misses)
     createModal({
       title: `Pelaaja: ${props.player.name}`,
       content: () => (
         <div class="mb-16">
           <h3 class="font-bold mb-2">Pisteet</h3>
-          <NumberEditor
-            value={props.player.score}
-            onChange={(score) => setPlayerScore(props.player.id, score)}
-            buttons={[1, 5]}
-          />
+          <NumberEditor value={score()} onChange={setScore} buttons={[1, 5]} />
+          <ChangeInformation original={props.player.score} new={score()} />
           <h3 class="font-bold mt-8 mb-2">Ohi</h3>
-          <NumberEditor
-            value={props.player.misses}
-            onChange={(misses) => setPlayerMisses(props.player.id, misses)}
-            buttons={[1]}
-          />
+          <NumberEditor value={misses()} onChange={setMisses} buttons={[1]} />
+          <ChangeInformation original={props.player.misses} new={misses()} />
         </div>
       ),
+      onOk: () => {
+        setPlayerScore(props.player.id, score())
+        setPlayerMisses(props.player.id, misses())
+      },
     })
   }
 

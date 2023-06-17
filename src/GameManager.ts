@@ -84,6 +84,7 @@ export const setPlayerScore = (id: string, value: number) => {
       return current
     })
   )
+  putGameToStorage(game)
 }
 
 export const setPlayerMisses = (id: string, value: number) => {
@@ -93,4 +94,5 @@ export const setPlayerMisses = (id: string, value: number) => {
       return current
     })
   )
+  putGameToStorage(game)
 }
