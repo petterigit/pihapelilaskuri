@@ -1,34 +1,23 @@
-## Usage
+# Pihapelilaskuri
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+Helppokäyttöinen pistelaskuri geneeriseen pihapeliin (Mölkkyyn)
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+Saatavilla [nikug.github.io/pihapelilaskuri](https://nikug.github.io/pihapelilaskuri)
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+# Devaus
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+Teknologiat:
 
-## Available Scripts
+- Node 18
+- Yarn v3 (Berry)
+- Vite
+- Typescript
+- SolidJS
+- UnoCSS
 
-In the project directory, you can run:
+Ajaminen lokaalisti:
 
-### `npm dev` or `npm start`
+1. Aja `yarn` pakettien asentamiseksi
+2. Aja `yarn dev` käynnistääksesi projektin
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+Jos editori valittaa importeista, generoi editoriisi sopivat tiedostot [tämän ohjeen mukaan](https://yarnpkg.com/getting-started/editor-sdks)
