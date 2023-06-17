@@ -59,7 +59,7 @@ export const Main: Component = () => {
       title: 'Toiminnot',
       hideOk: true,
       content: (closeModal) => (
-        <div class="flex flex-col justify-center items-center gap-12 pb-16">
+        <div class="flex flex-col justify-center items-center gap-8 divide-x pb-16">
           <Button
             text="Muokkaa pelaajia"
             onClick={() => {
@@ -100,12 +100,12 @@ export const Main: Component = () => {
       <div class="h-screen w-full overflow-auto py-18">
         <Players />
       </div>
-      <div class={`${barClasses} bottom-0 border-t`}>
-        <Show when={isPlayersState()}>
+      <Show when={isPlayersState()}>
+        <div class={`${barClasses} bottom-0 border-t`}>
           <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
           <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
-        </Show>
-      </div>
+        </div>
+      </Show>
     </div>
   )
 }

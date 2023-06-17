@@ -8,8 +8,8 @@ export default defineConfig({
   theme: {
     colors: {
       primary: {
-        dark: Color('#179299').darken(0.3).hex(),
-        DEFAULT: Color('#179299').hex(),
+        dark: Color('#179299').darken(0.4).hex(),
+        DEFAULT: Color('#179299').darken(0.1).hex(),
       },
       danger: {
         dark: Color('#d20f39').darken(0.3).hex(),
@@ -21,7 +21,7 @@ export default defineConfig({
         overlay: Color('#7c7f93').hex(),
       },
       text: {
-        DEFAULT: Color('#4c4f69').hex(),
+        DEFAULT: Color('#4c4f69').darken(0.3).hex(),
       },
     },
   },
