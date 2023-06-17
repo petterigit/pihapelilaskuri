@@ -5,13 +5,30 @@ import { ModalContext } from '../components/ModalContext'
 import {
   addPlayer,
   endGame,
+  gameHasStarted,
   isGameState,
   isPlayersState,
   randomizePlayerOrder,
   setGameState,
+  startGame,
 } from '../GameManager'
 import { TextInput } from '../components/TextInput'
 import { TextButton } from '../components/TextButton'
+
+const barClasses = `
+  absolute
+  left-0
+  right-0
+  w-full
+  px-4
+  h-16
+  bg-bg
+  flex
+  justify-between
+  items-center
+  shadow
+  z-10
+`
 
 export const Main: Component = () => {
   const [, { createModal }] = useContext(ModalContext)
@@ -66,12 +83,15 @@ export const Main: Component = () => {
 
   return (
     <div class="max-w-3xl mx-auto relative border">
-      <div class="absolute top-0 left-0 right-0 w-full px-4 h-16 border-b bg-bg flex justify-between items-center shadow">
+      <div class={`${barClasses} top-0 border-b`}>
         <h2 class="font-bold text-2xl py-4 text-center">
           {isPlayersState() ? 'Pelaajat' : 'Peli'}
         </h2>
         <Show when={isPlayersState()}>
-          <Button text="Aloita" onClick={() => setGameState('game')} />
+          <Button
+            text={gameHasStarted() ? 'Jatka peliä' : 'Aloita'}
+            onClick={() => (gameHasStarted() ? setGameState('game') : startGame())}
+          />
         </Show>
         <Show when={isGameState()}>
           <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
@@ -80,7 +100,7 @@ export const Main: Component = () => {
       <div class="h-screen w-full overflow-auto py-18">
         <Players />
       </div>
-      <div class="absolute bottom-0 left-0 right-0 w-full px-4 h-16 border-t bg-bg flex justify-between items-center shadow">
+      <div class={`${barClasses} bottom-0 border-t`}>
         <Show when={isPlayersState()}>
           <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
           <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />

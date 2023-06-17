@@ -28,10 +28,10 @@ export const Modal: Component<Props> = (props) => {
 
   return (
     <div
-      class="fixed inset-0 h-screen flex items-center justify-center bg-black/50"
+      class="fixed inset-0 h-screen flex items-center justify-center bg-black/50 z-20"
       onClick={() => props.onCancel(props.index)}
     >
-      <div class="p-8 max-w-3xl w-full bg-bg" onClick={(event) => event.stopPropagation()}>
+      <div class="p-8 max-w-3xl w-full bg-bg z-20" onClick={(event) => event.stopPropagation()}>
         <div class="min-h-48">
           <h3 class="font-bold text-xl mb-8">{props.modal.title}</h3>
           {props.modal.content(props.closeModal)}

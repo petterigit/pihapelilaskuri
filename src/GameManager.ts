@@ -6,6 +6,7 @@ import { putGameToStorage } from './localstorage'
 export const newGame = (): Game => ({
   state: 'players',
   players: {},
+  hasStarted: false,
 })
 
 export const newPlayer = (): Player => ({
@@ -20,6 +21,7 @@ export const [game, setGame] = createStore<Game>(newGame())
 export const getPlayers = () => Object.values(game.players)
 export const isPlayersState = () => game.state === 'players'
 export const isGameState = () => game.state === 'game'
+export const gameHasStarted = () => game.hasStarted
 
 export const addPlayer = (name: string) => {
   const player = newPlayer()
@@ -97,6 +99,17 @@ export const setPlayerMisses = (id: string, value: number) => {
   putGameToStorage(game)
 }
 
+export const startGame = () => {
+  setGame(
+    produce((current) => {
+      current.hasStarted = true
+      current.state = 'game'
+    })
+  )
+  putGameToStorage(game)
+}
+
 export const endGame = () => {
   setGame(newGame())
+  putGameToStorage(game)
 }
