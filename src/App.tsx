@@ -12,7 +12,7 @@ const App: Component = () => {
 
   return (
     <ModalProvider>
-      <div class="w-screen h-screen text-text bg-bg overflow-hidden relative">
+      <div class="fixed inset-0 text-text bg-bg overflow-hidden relative">
         <Main />
         <ModalContainer />
       </div>

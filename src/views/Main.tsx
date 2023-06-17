@@ -83,7 +83,7 @@ export const Main: Component = () => {
   }
 
   return (
-    <div class="max-w-3xl mx-auto relative border">
+    <div class="max-w-3xl mx-auto relative border-x">
       <div class={`${barClasses} top-0 border-b`}>
         <h2 class="font-bold text-2xl py-4 text-center">
           {isPlayersState() ? 'Pelaajat' : 'Peli'}
@@ -98,7 +98,7 @@ export const Main: Component = () => {
           <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
         </Show>
       </div>
-      <div class="h-screen w-full overflow-auto py-18">
+      <div class="min-h-screen w-full overflow-auto py-18">
         <Players />
       </div>
       <Show when={isPlayersState()}>
