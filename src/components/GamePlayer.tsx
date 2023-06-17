@@ -39,7 +39,7 @@ export const GamePlayer: Component<Props> = (props) => {
   }
 
   return (
-    <div class="flex justify-stretch px-4 py-2">
+    <div class="flex justify-stretch px-4 py-4">
       <div class="flex-grow">
         <div class="font-bold text-xl flex items-center">
           <p>{props.player.name}</p>
@@ -47,12 +47,14 @@ export const GamePlayer: Component<Props> = (props) => {
             <span class="inline-block text-3xl i-tabler-crown" />
           </Show>
         </div>
-        <span class="mr-8">
-          Pisteet: <span class="font-bold">{props.player.score}</span>
-        </span>
-        <span>
-          Ohi: <span class="font-bold">{props.player.misses}</span>
-        </span>
+        <div>
+          <p class="inline-block mr-2 min-w-24">
+            Pisteet: <span class="font-bold">{props.player.score}</span>
+          </p>
+          <p class="inline-block min-w-24">
+            Ohi: <span class="font-bold">{props.player.misses}</span>
+          </p>
+        </div>
       </div>
       <div class="flex items-center">
         <TextButton text="Muokkaa" onClick={() => handleEdit()} />
