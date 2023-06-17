@@ -44,4 +44,5 @@ export default defineConfig({
       `,
     },
   ],
+  rules: [['h-dscreen', { height: '100dvh' }]],
 })
