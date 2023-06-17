@@ -40,13 +40,17 @@ export const Modal: Component<Props> = (props) => {
           <Show when={!props.modal.hideCancel}>
             <Button
               danger
-              text="Peruuta"
+              text={props.modal.cancelText ? props.modal.cancelText : 'Peruuta'}
               class="w-32"
               onClick={() => props.onCancel(props.index)}
             />
           </Show>
           <Show when={!props.modal.hideOk}>
-            <Button text="Ok" class="w-32" onClick={() => props.onOk(props.index)} />
+            <Button
+              text={props.modal.okText ? props.modal.okText : 'Ok'}
+              class="w-32"
+              onClick={() => props.onOk(props.index)}
+            />
           </Show>
         </div>
       </div>

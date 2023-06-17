@@ -73,8 +73,16 @@ export const Main: Component = () => {
             border
             text="Nollaa peli"
             onClick={() => {
-              endGame()
               closeModal()
+              createModal({
+                title: 'Haluatko varmasti nollata pelin?',
+                okText: 'Nollaa',
+                content: () => <div />,
+                onOk: () => {
+                  endGame()
+                  closeModal()
+                },
+              })
             }}
           />
         </div>

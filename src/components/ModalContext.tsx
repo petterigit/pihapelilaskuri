@@ -9,6 +9,8 @@ export interface Modal {
   onCancel?: () => void
   hideOk?: boolean
   hideCancel?: boolean
+  okText?: string
+  cancelText?: string
 }
 
 type ModalContextType = [
