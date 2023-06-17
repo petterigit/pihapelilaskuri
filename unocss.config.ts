@@ -28,8 +28,18 @@ export default defineConfig({
     {
       getCSS: ({ theme }) => `
         * {
-            border-color: ${(theme.colors?.gray as any)?.[400]} !important; 
-          }
+            border-color: ${(theme.colors?.gray as any)?.[400]} !important;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          marghin: 0;
+        }
+
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
       `,
     },
   ],

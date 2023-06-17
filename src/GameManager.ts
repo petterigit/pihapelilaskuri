@@ -64,12 +64,32 @@ export const randomizePlayerOrder = () => {
       return current.players
     })
   )
+  putGameToStorage(game)
 }
 
 export const setGameState = (state: State) => {
   setGame(
     produce((current) => {
       current.state = state
+      return current
+    })
+  )
+  putGameToStorage(game)
+}
+
+export const setPlayerScore = (id: string, value: number) => {
+  setGame(
+    produce((current) => {
+      current.players[id].score = value
+      return current
+    })
+  )
+}
+
+export const setPlayerMisses = (id: string, value: number) => {
+  setGame(
+    produce((current) => {
+      current.players[id].misses = value
       return current
     })
   )
