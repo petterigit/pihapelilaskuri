@@ -98,7 +98,7 @@ export const Main: Component = () => {
           <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
         </Show>
       </div>
-      <div class="h-screen w-full overflow-auto py-18">
+      <div class="min-h-screen w-full overflow-auto py-18">
         <Players />
       </div>
       <Show when={isPlayersState()}>
