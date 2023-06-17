@@ -3,10 +3,12 @@ import { createStore } from 'solid-js/store'
 import { Modal } from './Modal'
 
 export interface Modal {
-  content: () => JSX.Element
+  content: (closeModal: () => void) => JSX.Element
   title?: string
   onOk?: () => boolean | void
   onCancel?: () => void
+  hideOk?: boolean
+  hideCancel?: boolean
 }
 
 type ModalContextType = [
@@ -62,7 +64,13 @@ export const ModalContainer: Component = () => {
     <div class="relative">
       <For each={modals}>
         {(modal, index) => (
-          <Modal modal={modal} index={index()} onOk={handleOk} onCancel={handleCancel} />
+          <Modal
+            modal={modal}
+            index={index()}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            closeModal={() => closeModal(index())}
+          />
         )}
       </For>
     </div>

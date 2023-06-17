@@ -96,3 +96,7 @@ export const setPlayerMisses = (id: string, value: number) => {
   )
   putGameToStorage(game)
 }
+
+export const endGame = () => {
+  setGame(newGame())
+}

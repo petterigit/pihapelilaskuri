@@ -2,8 +2,16 @@ import { Component, Show, createSignal, useContext } from 'solid-js'
 import { Players } from '../components/Players'
 import { Button } from '../components/Button'
 import { ModalContext } from '../components/ModalContext'
-import { addPlayer, isPlayersState, randomizePlayerOrder, setGameState } from '../GameManager'
+import {
+  addPlayer,
+  endGame,
+  isGameState,
+  isPlayersState,
+  randomizePlayerOrder,
+  setGameState,
+} from '../GameManager'
 import { TextInput } from '../components/TextInput'
+import { TextButton } from '../components/TextButton'
 
 export const Main: Component = () => {
   const [, { createModal }] = useContext(ModalContext)
@@ -29,6 +37,33 @@ export const Main: Component = () => {
     })
   }
 
+  const handleGameOptions = () => {
+    createModal({
+      title: 'Toiminnot',
+      hideOk: true,
+      content: (closeModal) => (
+        <div class="flex flex-col justify-center items-center gap-12 pb-16">
+          <Button
+            text="Muokkaa pelaajia"
+            onClick={() => {
+              setGameState('players')
+              closeModal()
+            }}
+          />
+          <Button
+            danger
+            text="Päätä peli"
+            onClick={() => {
+              endGame()
+              closeModal()
+            }}
+          />
+        </div>
+      ),
+      onOk: () => createNewPlayer(),
+    })
+  }
+
   return (
     <div class="max-w-3xl mx-auto relative border">
       <div class="absolute top-0 left-0 right-0 w-full px-4 h-16 border-b bg-bg flex justify-between items-center shadow">
@@ -37,6 +72,9 @@ export const Main: Component = () => {
         </h2>
         <Show when={isPlayersState()}>
           <Button text="Aloita" onClick={() => setGameState('game')} />
+        </Show>
+        <Show when={isGameState()}>
+          <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
         </Show>
       </div>
       <div class="h-screen w-full overflow-auto py-18">

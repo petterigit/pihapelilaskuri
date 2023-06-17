@@ -1,4 +1,4 @@
-import { Component, onCleanup, onMount } from 'solid-js'
+import { Component, Show, onCleanup, onMount } from 'solid-js'
 import type { Modal as ModalType } from './ModalContext'
 import { Button } from './Button'
 
@@ -7,6 +7,7 @@ interface Props {
   index: number
   onOk: (index: number) => boolean | void
   onCancel: (index: number) => boolean | void
+  closeModal: () => void
 }
 
 export const Modal: Component<Props> = (props) => {
@@ -33,11 +34,20 @@ export const Modal: Component<Props> = (props) => {
       <div class="p-8 max-w-3xl w-full bg-bg" onClick={(event) => event.stopPropagation()}>
         <div class="min-h-48">
           <h3 class="font-bold text-xl mb-8">{props.modal.title}</h3>
-          {props.modal.content()}
+          {props.modal.content(props.closeModal)}
         </div>
         <div class="flex justify-center gap-16">
-          <Button danger text="Peruuta" class="w-32" onClick={() => props.onCancel(props.index)} />
-          <Button text="Ok" class="w-32" onClick={() => props.onOk(props.index)} />
+          <Show when={!props.modal.hideCancel}>
+            <Button
+              danger
+              text="Peruuta"
+              class="w-32"
+              onClick={() => props.onCancel(props.index)}
+            />
+          </Show>
+          <Show when={!props.modal.hideOk}>
+            <Button text="Ok" class="w-32" onClick={() => props.onOk(props.index)} />
+          </Show>
         </div>
       </div>
     </div>
