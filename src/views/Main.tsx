@@ -60,7 +60,7 @@ export const Main: Component = () => {
       title: 'Toiminnot',
       hideOk: true,
       content: (closeModal) => (
-        <div class="flex flex-col justify-center items-center gap-8 divide-x pb-16">
+        <div class="flex flex-col justify-center items-center gap-8 pb-16">
           <Button
             text="Muokkaa pelaajia"
             onClick={() => {
@@ -68,8 +68,9 @@ export const Main: Component = () => {
               closeModal()
             }}
           />
-          <Button
+          <TextButton
             danger
+            border
             text="Nollaa peli"
             onClick={() => {
               endGame()
