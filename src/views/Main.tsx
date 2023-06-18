@@ -13,9 +13,8 @@ import {
   setGameState,
   startGame,
 } from '../GameManager'
-import { TextInput } from '../components/TextInput'
 import { TextButton } from '../components/TextButton'
-import { NewPlayerPlaceholder } from '../components/NewPlayerPlaceholder'
+import { AddPlayers } from '../components/AddPlayers'
 
 const barClasses = `
   absolute
@@ -44,6 +43,7 @@ export const Main: Component = () => {
     setName('')
   }
 
+  /* https://www.youtube.com/watch?v=Ep_blZhvI2A
   const handleNewPlayer = () => {
     createModal({
       title: 'Lisää pelaaja',
@@ -56,6 +56,7 @@ export const Main: Component = () => {
       onOk: () => createNewPlayer(),
     })
   }
+  */
 
   const handleGameOptions = () => {
     createModal({
@@ -63,13 +64,21 @@ export const Main: Component = () => {
       hideOk: true,
       content: (closeModal) => (
         <div class="flex flex-col justify-center items-center gap-8 pb-16">
-          <Button
-            text="Muokkaa pelaajia"
-            onClick={() => {
-              setGameState('players')
-              closeModal()
-            }}
-          />
+          <Show when={isPlayersState()}>
+            <Button disabled={getNumberOfPlayers() === 0} onClick={() => randomizePlayerOrder()}>
+              Sekoita pelaajat
+            </Button>
+          </Show>
+          <Show when={isGameState()}>
+            <Button
+              text="Muokkaa pelaajia"
+              onClick={() => {
+                setGameState('players')
+                closeModal()
+              }}
+            />
+          </Show>
+
           <TextButton
             danger
             border
@@ -100,27 +109,26 @@ export const Main: Component = () => {
           {isPlayersState() ? `Pelaajat (${getNumberOfPlayers()})` : 'Peli'}
         </h2>
         <Show when={isPlayersState()}>
-          <Button
-            text={gameHasStarted() ? 'Jatka peliä' : 'Aloita'}
-            onClick={() => (gameHasStarted() ? setGameState('game') : startGame())}
-          />
+          <div class="flex flex-row gap-2 items-center">
+            <Button
+              disabled={getNumberOfPlayers() === 0}
+              text={gameHasStarted() ? 'Jatka peliä' : 'Aloita'}
+              onClick={() => (gameHasStarted() ? setGameState('game') : startGame())}
+            />
+          </div>
         </Show>
-        <Show when={isGameState()}>
-          <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
-        </Show>
+        <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
       </div>
-      <div class="h-screen w-full overflow-auto py-18">
-        <Players />
-        <Show when={isPlayersState()}>
-          <NewPlayerPlaceholder players={getNumberOfPlayers()} />
-        </Show>
-      </div>
-      <Show when={isPlayersState()}>
-        <div class={`${barClasses} bottom-0 border-t`}>
-          <Button text="Sekoita pelaajat" onClick={() => randomizePlayerOrder()} />
-          <Button text="Lisää pelaaja" onClick={() => handleNewPlayer()} />
+      <div class="flex flex-col h-screen w-full pt-18">
+        <div class="h-26">
+          <Show when={isPlayersState()}>
+            <AddPlayers players={getNumberOfPlayers()} large={getNumberOfPlayers() === 0} />
+          </Show>
         </div>
-      </Show>
+        <div class="grow overflow-auto">
+          <Players />
+        </div>
+      </div>
     </div>
   )
 }
