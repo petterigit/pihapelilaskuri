@@ -18,6 +18,7 @@ export const newPlayer = (): Player => ({
 
 export const [game, setGame] = createStore<Game>(newGame())
 
+export const getNumberOfPlayers = () => Object.values(game.players).length
 export const getPlayers = () => Object.values(game.players)
 export const isPlayersState = () => game.state === 'players'
 export const isGameState = () => game.state === 'game'
