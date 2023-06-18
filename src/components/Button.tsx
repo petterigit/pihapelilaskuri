@@ -29,6 +29,7 @@ export const Button: Component<Props> = (props) => {
       {...others}
     >
       {props.text}
+      {props.children}
     </button>
   )
 }
