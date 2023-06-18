@@ -1,6 +1,6 @@
 import { Component, JSX, splitProps } from 'solid-js'
 
-const classes = (danger?: boolean) => `
+const classes = (variant: 'primary' | 'danger' | 'disabled') => `
   rounded
   shadow
   hover:shadow-lg
@@ -8,7 +8,7 @@ const classes = (danger?: boolean) => `
   py-3
   px-6
   font-bold
-  ${danger ? 'bg-danger hover:bg-danger-dark' : 'bg-primary hover:bg-primary-dark'}
+  bg-${variant} hover:bg-${variant}-dark
   text-bg
 `
 
@@ -21,10 +21,20 @@ interface Props extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: Component<Props> = (props) => {
   const [local, others] = splitProps(props, ['onClick', 'text', 'class'])
 
+  const getVariant = () => {
+    let variant: 'primary' | 'danger' | 'disabled' = 'primary'
+    if (props.disabled) {
+      variant = 'disabled'
+    } else if (props.danger) {
+      variant = 'danger'
+    }
+    return variant
+  }
+
   return (
     <button
       classList={{}}
-      class={`${classes(props.danger)} ${local.class ? local.class : ''}`}
+      class={`${classes(getVariant())} ${local.class ? local.class : ''}`}
       onClick={(event) => props.onClick?.(event)}
       {...others}
     >
