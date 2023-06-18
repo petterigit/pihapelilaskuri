@@ -6,6 +6,7 @@ import {
   addPlayer,
   endGame,
   gameHasStarted,
+  getNumberOfPlayers,
   isGameState,
   isPlayersState,
   randomizePlayerOrder,
@@ -14,6 +15,7 @@ import {
 } from '../GameManager'
 import { TextInput } from '../components/TextInput'
 import { TextButton } from '../components/TextButton'
+import { NewPlayerPlaceholder } from '../components/NewPlayerPlaceholder'
 
 const barClasses = `
   absolute
@@ -95,7 +97,7 @@ export const Main: Component = () => {
     <div class="max-w-3xl h-full mx-auto relative border-x">
       <div class={`${barClasses} top-0 border-b`}>
         <h2 class="font-bold text-2xl py-4 text-center">
-          {isPlayersState() ? 'Pelaajat' : 'Peli'}
+          {isPlayersState() ? `Pelaajat (${getNumberOfPlayers()})` : 'Peli'}
         </h2>
         <Show when={isPlayersState()}>
           <Button
@@ -109,6 +111,9 @@ export const Main: Component = () => {
       </div>
       <div class="h-screen w-full overflow-auto py-18">
         <Players />
+        <Show when={isPlayersState()}>
+          <NewPlayerPlaceholder players={getNumberOfPlayers()} />
+        </Show>
       </div>
       <Show when={isPlayersState()}>
         <div class={`${barClasses} bottom-0 border-t`}>
