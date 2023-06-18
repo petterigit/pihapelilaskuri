@@ -7,6 +7,7 @@ import {
   endGame,
   gameHasStarted,
   getNumberOfPlayers,
+  isAddingPlayersState,
   isGameState,
   isPlayersState,
   randomizePlayerOrder,
@@ -14,7 +15,9 @@ import {
   startGame,
 } from '../GameManager'
 import { TextButton } from '../components/TextButton'
-import { AddPlayers } from '../components/AddPlayers'
+import { PlayerListActions } from '../components/PlayerListActions'
+import { AddPlayerForm } from '../components/AddPlayerForm'
+import { AddPlayersLargeButton } from '../components/AddPlayersLargeButton'
 
 const barClasses = `
   absolute
@@ -117,18 +120,27 @@ export const Main: Component = () => {
             />
           </div>
         </Show>
-        <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
+        <Show when={isGameState()}>
+          <TextButton text={<div class="i-tabler-dots text-3xl" />} onClick={handleGameOptions} />
+        </Show>
       </div>
       <div class="flex flex-col h-screen w-full pt-18">
-        <div class="h-26">
-          <Show when={isPlayersState()}>
-            <AddPlayers players={getNumberOfPlayers()} large={getNumberOfPlayers() === 0} />
-          </Show>
-        </div>
+        <Show when={isPlayersState() && getNumberOfPlayers() === 0 && !isAddingPlayersState()}>
+          <AddPlayersLargeButton />
+        </Show>
+        <Show when={isAddingPlayersState()}>
+          <AddPlayerForm />
+        </Show>
         <div class="grow overflow-auto">
           <Players />
         </div>
       </div>
+
+      <Show when={isPlayersState()}>
+        <div class={`${barClasses} bottom-0 border-b`}>
+          <PlayerListActions />
+        </div>
+      </Show>
     </div>
   )
 }
