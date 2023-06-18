@@ -5,7 +5,7 @@ export interface Player {
   misses: number
 }
 
-export type State = 'players' | 'game'
+export type State = 'players' | 'game' | 'adding-players'
 
 export interface Game {
   state: State
