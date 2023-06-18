@@ -9,7 +9,9 @@ Saatavilla [nikug.github.io/pihapelilaskuri](https://nikug.github.io/pihapelilas
 Teknologiat:
 
 - Node 18
+  - https://nodejs.org/en/download
 - Yarn v3 (Berry)
+  - https://yarnpkg.com/getting-started/install
 - Vite
 - Typescript
 - SolidJS
